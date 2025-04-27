@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This project is a Test Automation Framework built using Playwright and Typescript for automated testing of REST APIs.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "playwright:tests": "npx playwright test"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
