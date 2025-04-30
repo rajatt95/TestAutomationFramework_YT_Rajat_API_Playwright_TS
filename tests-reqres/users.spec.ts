@@ -4,7 +4,7 @@ test.describe('Users', () => {
 
   const apiKey: string = 'reqres-free-v1';
 
-  test('GET Request - Get User Detail', async ({ request }: { request: APIRequestContext }) => {
+  test('GET Request - Get User Detail. @regression', async ({ request }: { request: APIRequestContext }) => {
     const response: APIResponse = await request.get(`users/2`, {
         headers: {
           'x-api-key': apiKey,
@@ -22,7 +22,7 @@ test.describe('Users', () => {
     expect(responseBody.data.email).toBeTruthy();
   });
 
-  test('POST Request - Create New User', async ({ request }: { request: APIRequestContext }) => {
+  test('POST Request - Create New User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
     const response: APIResponse = await request.post(`user`, {
       data: {
         id: 1111,
@@ -39,7 +39,7 @@ test.describe('Users', () => {
     expect(responseBody.createdAt).toBeTruthy();
   });
 
-  test('PUT Request - Update User', async ({ request }: { request: APIRequestContext }) => {
+  test('PUT Request - Update User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
     const response: APIResponse = await request.put(`users/2`, {
       data: {
         name: 'test name - updated',
@@ -59,7 +59,7 @@ test.describe('Users', () => {
     expect(responseBody.updatedAt).toBeTruthy();
   });
 
-  test('DELETE Request - Delete User', async ({ request }: { request: APIRequestContext }) => {
+  test('DELETE Request - Delete User. @regression', async ({ request }: { request: APIRequestContext }) => {
     const response: APIResponse = await request.delete(`users/2`, {
       headers: {
         'x-api-key': apiKey,
