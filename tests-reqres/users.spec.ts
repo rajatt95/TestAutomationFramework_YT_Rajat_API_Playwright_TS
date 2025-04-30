@@ -2,11 +2,10 @@ import { test, expect, APIRequestContext, APIResponse } from '@playwright/test';
 
 test.describe('Users', () => {
 
-  const baseUrl: string = 'https://reqres.in/api';
   const apiKey: string = 'reqres-free-v1';
 
   test('GET Request - Get User Detail', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.get(`${baseUrl}/users/2`, {
+    const response: APIResponse = await request.get(`users/2`, {
         headers: {
           'x-api-key': apiKey,
         },
@@ -24,7 +23,7 @@ test.describe('Users', () => {
   });
 
   test('POST Request - Create New User', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.post(`${baseUrl}/user`, {
+    const response: APIResponse = await request.post(`user`, {
       data: {
         id: 1111,
       }, headers: {
@@ -41,7 +40,7 @@ test.describe('Users', () => {
   });
 
   test('PUT Request - Update User', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.put(`${baseUrl}/users/2`, {
+    const response: APIResponse = await request.put(`users/2`, {
       data: {
         name: 'test name - updated',
         job: 'test job - updated',
@@ -61,7 +60,7 @@ test.describe('Users', () => {
   });
 
   test('DELETE Request - Delete User', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.delete(`${baseUrl}/users/2`, {
+    const response: APIResponse = await request.delete(`users/2`, {
       headers: {
         'x-api-key': apiKey,
       },
