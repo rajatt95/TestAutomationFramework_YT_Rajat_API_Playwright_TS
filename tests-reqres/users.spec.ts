@@ -4,6 +4,7 @@ import EndpointUtils from '../utils/EndpointUtils';
 import RequestBodyUtils from '../utils/RequestBodyUtils';
 import RequestUtils from '../utils/RequestUtils';
 import ResponseUtils from '../utils/ResponseUtils';
+import VerificationUtils from '../utils/VerificationUtils';
 
 test.describe('Users', () => {
 
@@ -20,12 +21,12 @@ test.describe('Users', () => {
     // Parse and Log Response Body    
     const responseBody = await ResponseUtils.parseAndLog(response)
     
-    expect(response.status()).toBe(200);
-    expect(responseBody.data.id).toBe(2);
-    expect(responseBody.data.first_name).toBe('Janet');
-    expect(responseBody.data.last_name).toBe('Weaver');
-    expect(responseBody.data.email).toBeTruthy();
-    
+    VerificationUtils.assertResponseStatusCode(response, 200)  
+    VerificationUtils.assertResponseBodyKeyValue(responseBody.data, 'id', 2);
+    VerificationUtils.assertResponseBodyKeyValue(responseBody.data, 'first_name', 'Janet');
+    VerificationUtils.assertResponseBodyKeyValue(responseBody.data, 'last_name', 'Weaver');
+    VerificationUtils.assertResponseBodyKeyPresent(responseBody.data, 'email')
+
   });
 
   test('POST Request - Create New User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
@@ -35,8 +36,8 @@ test.describe('Users', () => {
     // Parse and Log Response Body   
     const responseBody = await ResponseUtils.parseAndLog(response)
 
-    expect(responseBody.id).toBe(1111);
-    expect(responseBody.createdAt).toBeTruthy();
+    VerificationUtils.assertResponseBodyKeyValue(responseBody, 'id', 1111);
+    VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'createdAt');
 
   });
 
@@ -48,10 +49,10 @@ test.describe('Users', () => {
     // Parse and Log Response Body     
     const responseBody = await ResponseUtils.parseAndLog(response)
 
-    expect(response.status()).toBe(200);
-    expect(responseBody.name).toBe('test name - updated');
-    expect(responseBody.job).toBe('test job - updated');
-    expect(responseBody.updatedAt).toBeTruthy();
+    VerificationUtils.assertResponseStatusCode(response, 200);
+    VerificationUtils.assertResponseBodyKeyValue(responseBody, 'name', 'test name - updated');
+    VerificationUtils.assertResponseBodyKeyValue(responseBody, 'job', 'test job - updated');
+    VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'updatedAt');
 
   });
 
@@ -59,7 +60,8 @@ test.describe('Users', () => {
     
     // Make a request to the API endpoint
     const response = await RequestUtils.delete(request, singleUserEndpoint);
-    expect(response.status()).toBe(204);
+    
+    VerificationUtils.assertResponseStatusCode(response, 204);
 
   });
 });
