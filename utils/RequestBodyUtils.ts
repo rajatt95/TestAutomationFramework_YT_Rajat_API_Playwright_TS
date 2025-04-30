@@ -1,5 +1,6 @@
 import requestBodyUserCreate from '../test-data/users/user_create.json';
 import requestBodyUserUpdate from '../test-data/users/user_update.json';
+import requestBodyUserUpdatePatch from '../test-data/users/user_update_patch.json';
 
 import requestBodyRegisterSuccessful from '../test-data/register/register-successful.json';
 import requestBodyRegisterUnsuccessful from '../test-data/register/register-unsuccessful.json';
@@ -15,6 +16,7 @@ class RequestBodyUtils {
     // Users
     USER_CREATE = requestBodyUserCreate;
     USER_UPDATE = requestBodyUserUpdate;
+    USER_UPDATE_PATCH = requestBodyUserUpdatePatch;
 
     // Register
     REGISTER_SUCCESSFUL = requestBodyRegisterSuccessful;
@@ -23,7 +25,7 @@ class RequestBodyUtils {
     // Login
     LOGIN_SUCCESSFUL = requestBodyLoginSuccessful;
     LOGIN_UNSUCCESSFUL = requestBodyLoginUnsuccessful;
-    
+
 }
 
 export default new RequestBodyUtils;
