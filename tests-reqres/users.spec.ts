@@ -1,6 +1,7 @@
 import { test, expect, APIRequestContext, APIResponse } from '@playwright/test';
 
 import EndpointUtils from '../utils/EndpointUtils';
+import RequestBodyUtils from '../utils/RequestBodyUtils';
 
 test.describe('Users', () => {
 
@@ -29,9 +30,8 @@ test.describe('Users', () => {
 
   test('POST Request - Create New User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
     const response: APIResponse = await request.post(userEndpoint, {
-      data: {
-        id: 1111,
-      }, headers: {
+      data: RequestBodyUtils.USER_CREATE
+      , headers: {
         'x-api-key': apiKey,   
       } 
     });
@@ -46,10 +46,8 @@ test.describe('Users', () => {
 
   test('PUT Request - Update User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
     const response: APIResponse = await request.put(singleUserEndpoint, {
-      data: {
-        name: 'test name - updated',
-        job: 'test job - updated',
-      }, headers: {
+      data: RequestBodyUtils.USER_UPDATE
+      , headers: {
         'x-api-key': apiKey,
       }
     });
