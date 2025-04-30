@@ -1,10 +1,16 @@
 import { APIRequestContext, APIResponse } from '@playwright/test';
 import TokenUtils from './TokenUtils';
 
+/**
+ * Represents the structure of the request body object.
+ */
 interface RequestBody {
   [key: string]: any;
 }
 
+/**
+ * Utility class for making HTTP requests and logging request and response details.
+ */
 class RequestUtils {
 
   /**
