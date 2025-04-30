@@ -1,11 +1,16 @@
 import { test, expect, APIRequestContext, APIResponse } from '@playwright/test';
 
+import EndpointUtils from '../utils/EndpointUtils';
+
 test.describe('Users', () => {
 
   const apiKey: string = 'reqres-free-v1';
 
+  const singleUserEndpoint = EndpointUtils.SINGLE_USER;
+  const userEndpoint = EndpointUtils.USER;
+
   test('GET Request - Get User Detail. @regression', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.get(`users/2`, {
+    const response: APIResponse = await request.get(singleUserEndpoint, {
         headers: {
           'x-api-key': apiKey,
         },
@@ -23,7 +28,7 @@ test.describe('Users', () => {
   });
 
   test('POST Request - Create New User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.post(`user`, {
+    const response: APIResponse = await request.post(userEndpoint, {
       data: {
         id: 1111,
       }, headers: {
@@ -40,7 +45,7 @@ test.describe('Users', () => {
   });
 
   test('PUT Request - Update User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.put(`users/2`, {
+    const response: APIResponse = await request.put(singleUserEndpoint, {
       data: {
         name: 'test name - updated',
         job: 'test job - updated',
@@ -60,7 +65,7 @@ test.describe('Users', () => {
   });
 
   test('DELETE Request - Delete User. @regression', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.delete(`users/2`, {
+    const response: APIResponse = await request.delete(singleUserEndpoint, {
       headers: {
         'x-api-key': apiKey,
       },
