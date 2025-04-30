@@ -6,13 +6,19 @@ import RequestUtils from '../utils/RequestUtils';
 import ResponseUtils from '../utils/ResponseUtils';
 import VerificationUtils from '../utils/VerificationUtils';
 
+/**
+ * Test suite for API endpoints related to user management.
+ */
 test.describe('Users', () => {
 
-  const apiKey: string = 'reqres-free-v1';
-
+  // Define endpoints for users
   const singleUserEndpoint = EndpointUtils.SINGLE_USER;
   const userEndpoint = EndpointUtils.USER;
 
+  /**
+   * Test to retrieve user details with a GET request.
+   * @tags {regression}
+   */
   test('GET Request - Get User Detail. @regression', async ({ request }: { request: APIRequestContext }) => {
     
     // Make a request to the API endpoint
@@ -21,6 +27,7 @@ test.describe('Users', () => {
     // Parse and Log Response Body    
     const responseBody = await ResponseUtils.parseAndLog(response)
     
+    // Validate the response content
     VerificationUtils.assertResponseStatusCode(response, 200)  
     VerificationUtils.assertResponseBodyKeyValue(responseBody.data, 'id', 2);
     VerificationUtils.assertResponseBodyKeyValue(responseBody.data, 'first_name', 'Janet');
@@ -29,6 +36,10 @@ test.describe('Users', () => {
 
   });
 
+  /**
+   * Test to create a new user with a POST request.
+   * @tags {regression, sanity}
+   */
   test('POST Request - Create New User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
     // Make a request to the API endpoint
     const response = await RequestUtils.post(request, userEndpoint, RequestBodyUtils.USER_CREATE);
@@ -36,11 +47,16 @@ test.describe('Users', () => {
     // Parse and Log Response Body   
     const responseBody = await ResponseUtils.parseAndLog(response)
 
+    // Validate the response content
     VerificationUtils.assertResponseBodyKeyValue(responseBody, 'id', 1111);
     VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'createdAt');
 
   });
 
+  /**
+   * Test to update a user with a PUT request.
+   * @tags {regression, sanity}
+   */
   test('PUT Request - Update User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
     
     // Make a request to the API endpoint
@@ -49,6 +65,7 @@ test.describe('Users', () => {
     // Parse and Log Response Body     
     const responseBody = await ResponseUtils.parseAndLog(response)
 
+    // Validate the response content
     VerificationUtils.assertResponseStatusCode(response, 200);
     VerificationUtils.assertResponseBodyKeyValue(responseBody, 'name', 'test name - updated');
     VerificationUtils.assertResponseBodyKeyValue(responseBody, 'job', 'test job - updated');
@@ -56,11 +73,17 @@ test.describe('Users', () => {
 
   });
 
+
+  /**
+   * Test to delete a user with a DELETE request.
+   * @tags {regression}
+   */
   test('DELETE Request - Delete User. @regression', async ({ request }: { request: APIRequestContext }) => {
     
     // Make a request to the API endpoint
     const response = await RequestUtils.delete(request, singleUserEndpoint);
     
+    // Validate the response content
     VerificationUtils.assertResponseStatusCode(response, 204);
 
   });

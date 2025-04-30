@@ -1,7 +1,14 @@
-
-# Playwright
+# Ignore node_modules directory, which contains installed npm packages
 node_modules/
+
+# Ignore Playwright's test result output
 /test-results/
+
+# Ignore generated HTML report after running Playwright tests
 /playwright-report/
+
+# Ignore blob report used for HTML reporting (intermediate raw data)
 /blob-report/
+
+# Ignore Playwright's internal cache directory used for storing browser binaries and other data
 /playwright/.cache/
