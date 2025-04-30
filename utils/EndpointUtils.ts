@@ -8,6 +8,9 @@ class EndpointUtils {
 
     // Register
     REGISTER = 'register';
+     
+    // Login
+    LOGIN = 'login';
     
   }
   
