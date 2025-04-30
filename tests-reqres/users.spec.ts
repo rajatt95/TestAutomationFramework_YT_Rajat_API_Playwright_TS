@@ -2,6 +2,7 @@ import { test, expect, APIRequestContext, APIResponse } from '@playwright/test';
 
 import EndpointUtils from '../utils/EndpointUtils';
 import RequestBodyUtils from '../utils/RequestBodyUtils';
+import RequestUtils from '../utils/RequestUtils';
 
 test.describe('Users', () => {
 
@@ -11,12 +12,7 @@ test.describe('Users', () => {
   const userEndpoint = EndpointUtils.USER;
 
   test('GET Request - Get User Detail. @regression', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.get(singleUserEndpoint, {
-        headers: {
-          'x-api-key': apiKey,
-        },
-      });
-
+    const response = await RequestUtils.get(request, singleUserEndpoint);
     const responseBody: any = await response.json();
 
     console.log(responseBody);
@@ -29,12 +25,7 @@ test.describe('Users', () => {
   });
 
   test('POST Request - Create New User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.post(userEndpoint, {
-      data: RequestBodyUtils.USER_CREATE
-      , headers: {
-        'x-api-key': apiKey,   
-      } 
-    });
+    const response = await RequestUtils.post(request, userEndpoint, RequestBodyUtils.USER_CREATE);
 
     const responseBody: any = await response.json();
 
@@ -45,12 +36,7 @@ test.describe('Users', () => {
   });
 
   test('PUT Request - Update User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.put(singleUserEndpoint, {
-      data: RequestBodyUtils.USER_UPDATE
-      , headers: {
-        'x-api-key': apiKey,
-      }
-    });
+    const response = await RequestUtils.put(request, singleUserEndpoint, RequestBodyUtils.USER_UPDATE);
 
     const responseBody: any = await response.json();
 
@@ -63,11 +49,7 @@ test.describe('Users', () => {
   });
 
   test('DELETE Request - Delete User. @regression', async ({ request }: { request: APIRequestContext }) => {
-    const response: APIResponse = await request.delete(singleUserEndpoint, {
-      headers: {
-        'x-api-key': apiKey,
-      },
-    });
+    const response = await RequestUtils.delete(request, singleUserEndpoint);
   
     expect(response.status()).toBe(204);
   });
