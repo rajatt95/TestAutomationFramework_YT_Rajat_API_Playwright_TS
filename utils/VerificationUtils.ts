@@ -1,4 +1,5 @@
 import { expect, APIResponse } from '@playwright/test';
+import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
 
 /** 
  * Utility class for verification and assertion functions related to API responses. 
@@ -38,6 +39,33 @@ class VerificationUtils {
     console.log(`Asserts that Response Body has key: '${expectedKeyName}' with value: '${expectedValue}'.`);
     expect(responseBody[expectedKeyName]).toBe(expectedValue);
   }
+
+  /**
+   * Asserts that the entire response body conforms to a given JSON schema.
+   * Uses AJV for schema validation.
+   * 
+   * @param responseBody - The actual JSON response body to validate.
+   * @param schema - The JSON schema to validate against.
+   */
+  assertResponseSchema<T = any>(responseBody: unknown, schema: JSONSchemaType<T> | object): void {
+  
+    console.log(`Asserts that response body matches the provided JSON schema.`);
+
+    const ajv = new Ajv();
+    const validate: ValidateFunction = ajv.compile(schema);
+    const isValid = validate(responseBody);
+
+    if (!isValid && validate.errors) {
+      const errorMessages = validate.errors
+      .map(err => `${err.instancePath || '(root)'} ${err.message}`)
+      .join(', ');
+      throw new Error(`Schema validation failed: ${errorMessages}`);
+    }
+   
+    expect(isValid).toBe(true);
+  
+  }
+
 }
 
 export default new VerificationUtils();

@@ -5,6 +5,7 @@ import RequestBodyUtils from '../utils/RequestBodyUtils';
 import RequestUtils from '../utils/RequestUtils';
 import ResponseUtils from '../utils/ResponseUtils';
 import VerificationUtils from '../utils/VerificationUtils';
+import SchemaUtils from '../utils/SchemaUtils';
 
 /**
  * Test suite for API endpoints related to user management.
@@ -53,6 +54,8 @@ test.describe('Users', () => {
     VerificationUtils.assertResponseBodyKeyValue(responseBody, 'id', 1111);
     VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'createdAt');
 
+    VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.USER_CREATE)
+    
   });
 
   /**
@@ -72,6 +75,8 @@ test.describe('Users', () => {
     VerificationUtils.assertResponseBodyKeyValue(responseBody, 'name', 'test name - updated');
     VerificationUtils.assertResponseBodyKeyValue(responseBody, 'job', 'test job - updated');
     VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'updatedAt');
+
+    VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.USER_UPDATE_PUT)
 
   });
 
@@ -128,6 +133,7 @@ test.describe('Users', () => {
     VerificationUtils.assertResponseBodyKeyPresent(responseBody.data[0], 'avatar');
     
     // VerificationUtils.assertResponseBodyKeyValue(responseBody.support, 'text', 'To keep ReqRes free, contributions towards server costs are appreciated!');
+    VerificationUtils.assertResponseBodyKeyValue(responseBody.support, 'text', 'Tired of writing endless social media content? Let Content Caddy generate it for you.');    
 
   });
 
@@ -147,7 +153,8 @@ test.describe('Users', () => {
     VerificationUtils.assertResponseStatusCode(response, 200);
     VerificationUtils.assertResponseBodyKeyValue(responseBody, 'name', 'test name - updated using patch');
     VerificationUtils.assertResponseBodyKeyPresent(responseBody, 'updatedAt');
-  
+    VerificationUtils.assertResponseSchema(responseBody, SchemaUtils.USER_UPDATE_PATCH)
+
   });
 
 });
