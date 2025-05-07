@@ -40,7 +40,7 @@
 - [Contacts](#contacts)
 
 ## 📖 Introduction
-This repository contains a Test Automation Framework built using Playwright and Typescript for automated testing of REST APIs.
+This repository contains a **Test Automation Framework** built using **Playwright** and **Typescript** for automated testing of **REST APIs**.
 
 <!-- ## 🎥 Video Tutorial
 
@@ -55,19 +55,19 @@ Click on the image above to watch the tutorials. -->
 
 ## ▶️ Getting Started
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/rajatt95/TestAutomationFramework_YT_Rajat_API_Playwright_TS.git
    ```
 
-2. Navigate to the project directory:
+2. **Navigate to the project directory:**
 
    ```bash
    cd TestAutomationFramework_YT_Rajat_API_Playwright_TS
    ```
 
-3. Install dependencies:
+3. **Install dependencies:**
 
    ```bash
    npm install
