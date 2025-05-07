@@ -108,6 +108,7 @@ The tests follow a modular and maintainable structure:
 |     |-- RequestBodyUtils.ts
 |     |-- RequestUtils.ts
 |     |-- ResponseUtils.ts
+|     |-- SchemaUtils.ts
 |     |-- TokenUtils.ts
 |     |-- VerificationUtils.ts
 |-- .gitignore
