@@ -65,7 +65,7 @@ test.describe('Users', () => {
   test('PUT Request - Update User. @regression @sanity', async ({ request }: { request: APIRequestContext }) => {
     
     // Make a request to the API endpoint
-    const response = await RequestUtils.put(request, singleUserEndpoint, RequestBodyUtils.USER_UPDATE);
+    const response = await RequestUtils.put(request, singleUserEndpoint, RequestBodyUtils.USER_UPDATE_PUT);
 
     // Parse and Log Response Body     
     const responseBody = await ResponseUtils.parseAndLog(response)

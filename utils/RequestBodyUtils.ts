@@ -1,5 +1,5 @@
 import requestBodyUserCreate from '../test-data/request-body/users/user_create.json';
-import requestBodyUserUpdate from '../test-data/request-body/users/user_update.json';
+import requestBodyUserUpdatePut from '../test-data/request-body/users/user_update_put.json';
 import requestBodyUserUpdatePatch from '../test-data/request-body/users/user_update_patch.json';
 
 import requestBodyRegisterSuccessful from '../test-data/request-body/register/register-successful.json';
@@ -15,7 +15,7 @@ class RequestBodyUtils {
 
     // Users
     USER_CREATE = requestBodyUserCreate;
-    USER_UPDATE = requestBodyUserUpdate;
+    USER_UPDATE_PUT = requestBodyUserUpdatePut;
     USER_UPDATE_PATCH = requestBodyUserUpdatePatch;
 
     // Register

@@ -89,16 +89,16 @@ The tests follow a modular and maintainable structure:
 |          |-- 01_api_tests.yml
 |          |-- 02_api_tests_select_env.yml
 |-- test-data
-|     |-- login
-|          |-- login-successful.json
-|          |-- login-unsuccessful.json
-|     |-- register
-|          |-- register-successful.json
-|          |-- register-unsuccessful.json
-|     |-- users
-|          |-- user_create.json
-|          |-- user_update_patch.json
-|          |-- user_update.json
+|     |-- request-body
+|          |-- users
+|              |-- user_create.json
+|              |-- user_update_patch.json
+|              |-- user_update_put.json
+|     |-- schema
+|          |-- users
+|              |-- user_create.json
+|              |-- user_update_patch.json
+|              |-- user_update_put.json
 |-- tests-reqres
 |     |-- login.spec.ts
 |     |-- register.spec.ts
